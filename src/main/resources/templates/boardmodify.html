@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>게시물 작성 폼</title>
+</head>
+
+<style>
+  .layout {
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+  .layout input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .layout textarea {
+    width: 100%;
+    margin-top: 10px;
+    min-height: 400px;
+  }
+
+  .text:hover {
+    background-color: azure;
+  }
+</style>
+
+<body>
+<div class="layout">
+  <form action="/board/writepro" method="post">
+    <input type="text" placeholder="제목을 입력하세요" class="text" name="title">
+    <textarea class="text" placeholder="내용을 입력하세요" name="content"></textarea>
+    <button type="submit">작성</button>
+  </form>
+</div>
+</body>
+</html>
