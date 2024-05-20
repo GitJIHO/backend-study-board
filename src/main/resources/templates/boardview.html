@@ -3,11 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <title>게시글 상세 페이지</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTn7sPOsdLc0ZyxlN6S7dMI0l20xR3V9J6GxqJ8Ddx7P75wjB5O5hPO6sRoNGV2BY6i3I7iA1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 800px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .actions a {
+      text-decoration: none;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .actions .edit {
+      background-color: #4CAF50;
+    }
+
+    .actions .edit:hover {
+      background-color: #45a049;
+    }
+
+    .actions .delete {
+      background-color: #f44336;
+    }
+
+    .actions .delete:hover {
+      background-color: #e53935;
+    }
+  </style>
 </head>
 <body>
-<h1 th:text="${board.title}">제목입니다.</h1>
-<p th:text="${board.content}">내용이 들어갈 부분입니다.</p>
-<a th:href="@{/board/delete(id=${board.id})}">글 삭제</a>
-<a th:href="@{/board/modify/{id}(id=${board.id})}">수정</a>
+<div class="container">
+  <h1 th:text="${board.title}">제목입니다.</h1>
+  <p th:text="${board.content}">내용이 들어갈 부분입니다.</p>
+  <div class="actions">
+    <a th:href="@{/board/modify/{id}(id=${board.id})}" class="edit"><i class="fas fa-edit"></i> 수정</a>
+    <a th:href="@{/board/delete(id=${board.id})}" class="delete"><i class="fas fa-trash-alt"></i> 글 삭제</a>
+  </div>
+</div>
 </body>
 </html>

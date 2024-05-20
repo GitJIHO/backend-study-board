@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class BoardController {
@@ -23,11 +24,14 @@ public class BoardController {
     }
 
     @PostMapping("/board/writepro")
-    public String boardwritepro(Board board) {
+    public String boardwritepro(Board board, Model model) {
 
         boardservice.write(board);
 
-        return "";
+        model.addAttribute("message", "글 작성이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/list");
+
+        return "message";
     }
 
     @GetMapping("/board/list")
@@ -49,9 +53,23 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
-    @GetMapping("/board/modify")
-    public String boardModify(@PathVariable("id") Integer id){
+    @GetMapping("/board/modify/{id}")
+    public String boardModify(@PathVariable("id") Integer id, Model model){
 
+        model.addAttribute("board", boardservice.boardview(id));
         return "boardmodify";
+    }
+
+    @PostMapping("/board/update/{id}")
+    public String boardUpdate(@PathVariable("id") Integer id, Board board) throws Exception{
+
+        Board boardtemp = boardservice.boardview(id);
+
+        boardtemp.setTitle(board.getTitle());
+        boardtemp.setContent(board.getContent());
+
+        boardservice.write(boardtemp);
+
+        return "redirect:/board/list";
     }
 }

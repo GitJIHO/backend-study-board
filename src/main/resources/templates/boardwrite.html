@@ -3,37 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <title>게시물 작성 폼</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .layout {
+      width: 90%;
+      max-width: 600px;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .layout input, .layout textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    .layout input:focus, .layout textarea:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+
+    .layout textarea {
+      min-height: 200px;
+    }
+
+    .layout button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .layout button:hover {
+      background-color: #45a049;
+    }
+
+    .text:hover {
+      background-color: azure;
+    }
+  </style>
 </head>
 
-<style>
-  .layout {
-    width: 500px;
-    margin: 0 auto;
-    margin-top: 40px;
-  }
-  .layout input {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .layout textarea {
-    width: 100%;
-    margin-top: 10px;
-    min-height: 400px;
-  }
-
-  .text:hover {
-    background-color: azure;
-  }
-</style>
-
 <body>
-  <div class="layout">
-    <form action="/board/writepro" method="post">
-      <input type="text" placeholder="제목을 입력하세요" class="text" name="title">
-      <textarea class="text" placeholder="내용을 입력하세요" name="content"></textarea>
-      <button type="submit">작성</button>
-    </form>
-  </div>
+<div class="layout">
+  <form action="/board/writepro" method="post">
+    <input type="text" placeholder="제목을 입력하세요" class="text" name="title">
+    <textarea class="text" placeholder="내용을 입력하세요" name="content"></textarea>
+    <button type="submit">작성</button>
+  </form>
+</div>
 </body>
 </html>
