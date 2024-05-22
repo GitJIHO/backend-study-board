@@ -80,13 +80,72 @@
     .btn-new:hover {
       background-color: #45a049;
     }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .pagination a, .pagination strong {
+      margin: 0 5px;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #4CAF50;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .pagination strong {
+      color: red;
+      border-color: red;
+    }
+
+    .pagination a:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .search-form {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .search-form input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px 0 0 4px;
+      width: 200px;
+    }
+
+    .search-form button {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-left: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+
+    .search-form button:hover {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
 <div class="container">
   <div class="title">
-    <h2>컴s 게시판!</h2>
+    <h2>컴s 게시판</h2>
     <a href="/board/write" class="btn-new">새 글 작성</a>
+  </div>
+
+  <div class="search-form">
+    <form th:action="@{/board/list}" method="get">
+      <input type="text" name="searchKeyword" placeholder="검색어 입력" th:value="${param.searchKeyword}">
+      <button type="submit">검색</button>
+    </form>
   </div>
 
   <table>
@@ -105,6 +164,13 @@
     </tr>
     </tbody>
   </table>
+
+  <div class="pagination">
+    <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+      <a th:if="${page != nowPage}" th:href="@{/board/list(page=${page - 1}, searchKeyword=${param.searchKeyword})}" th:text="${page}"></a>
+      <strong th:if="${page == nowPage}" th:text="${page}"></strong>
+    </th:block>
+  </div>
 </div>
 </body>
 </html>
